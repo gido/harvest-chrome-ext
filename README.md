@@ -3,6 +3,7 @@ Improve Harvest Estimate Experience with a Chrome extension.
 
 # TODO
 ## General
+ - [x] Add a `Resumé` (hours grouped by item type) table at the end of the Estimate.
  - [ ] When creating a new estimate, Client field is `<empty>` by default
  - [ ] Live total hours count
  - [ ] Live total hours calculation for project management (20%)

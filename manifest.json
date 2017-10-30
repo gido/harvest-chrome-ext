@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "harvest-estimate-improvement",
+  "description": "Improve Harvest Estimate Visualization: add a Resumé table.",
+  "version": "2.0",
+  "content_scripts" : [
+    {
+      "matches" : [
+        "https://*.harvestapp.com/estimates/*"
+      ],
+      "js" : ["contentscript.js"],
+      "css": ["harvestimprove.css"],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "https://*.harvestapp.com/*",
+    "activeTab"
+  ],
+  "icons" : {
+      "48" : "icon.png",
+      "128" : "icon.png"
+  }
+}
