@@ -7,6 +7,9 @@ var lines,
 // Grab data
 lines = document.querySelectorAll('.client-doc-items .client-doc-rows tr');
 
+var total_qty = 0;
+var total_amount = 0;
+
 lines.forEach(function(line) {
     var itemType = line.querySelector('.item-type').innerText;
     var qty = parseInt(line.querySelector('.item-qty').innerText, 10);
@@ -14,6 +17,9 @@ lines.forEach(function(line) {
         .substring(4)     // Remove 'CHF '
         .replace(/'/, '')) // Remove currency formatting 10'500 -> 10500
     ;
+
+    total_qty += qty;
+    total_amount += amount;
 
     if (!linesPerItemType.has(itemType)) {
         linesPerItemType.set(itemType, {
@@ -46,7 +52,7 @@ var tableHeader = `<h4 class="no-print">Résumé (non visible par le client)</h4
     <tbody class="client-doc-rows">
     `;
 
-tableBody = '';
+var tableBody = '';
 for (var [key, data] of linesPerItemType) {
     tableBody += `
     <tr>
@@ -56,8 +62,17 @@ for (var [key, data] of linesPerItemType) {
     </tr>
     `;
 }
+tableBody += `</tbody>`;
 
-var tableFooter = `</table>`;
+var tableFooter = `
+<tbody class="client-doc-summary">
+    <tr class="total">
+        <td class="item-type desktop-only">Totaux de l'estimation</td>
+        <td class="item-qty desktop-only">${total_qty}</td>
+        <td class="item-amount">${total_amount}</td>
+    </tr>
+</tbody>`;
+tableFooter += `</table>`;
 
 container.innerHTML = tableHeader + tableBody + tableFooter;
 
