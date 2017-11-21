@@ -9,7 +9,7 @@ lines = document.querySelectorAll('.client-doc-items .client-doc-rows tr');
 
 lines.forEach(function(line) {
     var itemType = line.querySelector('.item-type').innerText;
-    var qty = parseInt(line.querySelector('.item-qty').innerText, 10);
+    var qty = parseFloat(line.querySelector('.item-qty').innerText);
     var amount = parseFloat(line.querySelector('.item-amount').innerText
         .substring(4)     // Remove 'CHF '
         .replace(/'/, '')) // Remove currency formatting 10'500 -> 10500
